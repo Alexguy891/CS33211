@@ -8,12 +8,14 @@ Banker's algorithm is an algorithm used to avoid deadlock and allocate resource 
 Banker's algorithm is easiest explained through the example that gives the algorithm its name. Considering a bank has `n` accounts and the sum of all money held in the accounts is `x`. If someone wants to loan `y` amount of money from the bank, the bank will check if `x - y > x` to determine if the loan will be given. This is to prevent any issues if all account holders decided to withdraw all their money at once. In other words, the total amount of money loaned off must always be less than the total amount of money in all accounts combined.
 
 ### How does this program work?
-This program first takes an input from a `.csv` or `.txt` file that is formatted in a specific way. The file data is read into 3 vectors, `all` for the allocated resources matrix, `max` for the maximum resources matrix, and `ava` for the available resources list. The program then generates the needed resource matrix called `nee` by subtracting the maximum resource values by the allocated resource values. The program will print all the resource matrices in console to be verified. The program then iterates through each process, determining whether or not there is a position in the sequence in which the process will finish and its needed resources will be met. This does so by continously looping from 0 to `n`, where `n` represents the number of processes, until it finds a position where the needed resource values are all less than the availble resources. This will continue until either all finishable processes are marked finished, though it is possible a process may not have a position in the sequence where it can finish. Then the program iterates through all points in the finish array, and checks if all processes were finished. If not, the program will print `Sequence is unsafe`, otherwise, the program prints the processes in order of the safe sequence.
+This program first takes an input from a `input.csv` file that is formatted in a specific way. The file data is read into 3 vectors, `all` for the allocated resources matrix, `max` for the maximum resources matrix, and `ava` for the available resources list. The program then generates the needed resource matrix called `nee` by subtracting the maximum resource values by the allocated resource values. The program will print all the resource matrices in console to be verified. The program then iterates through each process, determining whether or not there is a position in the sequence in which the process will finish and its needed resources will be met. This does so by continously looping from 0 to `n`, where `n` represents the number of processes, until it finds a position where the needed resource values are all less than the availble resources. This will continue until either all finishable processes are marked finished, though it is possible a process may not have a position in the sequence where it can finish. Then the program iterates through all points in the finish array, and checks if all processes were finished. If not, the program will print `Sequence is unsafe`, otherwise, the program prints the processes in order of the safe sequence.
 
-### How to format your file
+### How to format your csv file
 * Each row of the matrices must be delimited by a newline character.
 * Each cell of the matrix must be delimited by a space character.
 * To separate columns by matrix, they must be delimited by a `,`.
+* The file must be named as `input.csv`
+
 #### Example:
 For an allocated resource matrix of:
 ```
@@ -45,7 +47,7 @@ your file must be formatted as
 ```
 ### How to use this program:
 1. Download the source files into a directory.
-2. Create or add your `.csv` or `.txt` file into the same directory.
+2. Create or add your `input.csv` file into the same directory.
 3. Open your terminal in the directory.
 4. Compile the program first using
 ```
