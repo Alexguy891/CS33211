@@ -100,7 +100,7 @@ int main() {
 
     int nee[pro][res]; //vector for needed resources
 
-    int step = 0; //index
+    int step = 0; //iterator for process order
 
     for(int i = 0; i < pro; i++) //initialize all finish values as 0
         fin[i] = 0;
@@ -122,22 +122,22 @@ int main() {
 
     std::cout << '\n';
 
-    for(int i = 0; i < pro; i++) {
-        for(int j = 0; j < pro; j++) { //iterate through all processes
+    for(int i = 0; i < pro; i++) { //iterate through all processes
+        for(int j = 0; j < pro; j++) { //iterate through all processes to calculate position in sequence
             if(fin[j] == 0) { //if process not finished
-                int boo = 0; //safe unbool
+                int boo = 0; //flag bool
             
                 for(int k = 0; k < res; k++) { //iterate through all resources
-                    if(nee[j][k] > ava[k]) { //if needed  > available resources, set unsafe bool to false
+                    if(nee[j][k] > ava[k]) { //if needed  > available resources, set flag bool to true
                         boo = 1;
                         break;
                     }
                 }
             
-                if(boo == 0) { //if unsafe bool is false
-                    end[step++] = j; 
+                if(boo == 0) { //if flag bool is false
+                    end[step++] = j; //add process to position of iterator in sequence
 
-                    for(int l = 0; l < res; l++) //iterate through all resources
+                    for(int l = 0; l < res; l++) //iterate through all resources 
                         ava[l] += all[j][l]; //add allocated resource for process to available
                     
                     fin[j] = 1; //set process to finished
@@ -149,7 +149,7 @@ int main() {
     int boo = 1; //set safe bool to true 
 
     for(int i = 0; i < pro; i++) { //iterate through all processes
-        if(fin[i] == 0) { //if process is unfinished, print unsafe
+        if(fin[i] == 0) { //if process is unfinished, print unsafe and set safe bool to false
             boo = 0;
             std::cout << "Sequence is unsafe\n";
             break;
